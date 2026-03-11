@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kemi Oyebo — Social Media Manager & Community Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0a0a;
+    --teal: #00b4a6;
+    --teal-dark: #007a73;
+    --teal-pale: #e6f7f6;
+    --cream: #faf8f3;
+    --sand: #f0ebe0;
+    --muted: #6b7280;
+    --border: #e5e0d5;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(250,248,243,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--teal); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.875rem; font-weight: 500; text-decoration: none;
+    color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; right: -200px; top: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(0,180,166,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse 8s ease-in-out infinite;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; left: 30%; bottom: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,180,166,0.07) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1) translate(0,0); opacity: 1; }
+    50% { transform: scale(1.1) translate(-30px, 30px); opacity: 0.7; }
+  }
+  .hero-left { position: relative; z-index: 2; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--teal-dark);
+    background: var(--teal-pale); padding: 0.4rem 1rem; border-radius: 99px;
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+  }
+  .hero-tag::before { content: '●'; font-size: 0.5rem; }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 900; line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.7s 0.4s forwards;
+  }
+  .hero-title em {
+    font-style: italic; color: var(--teal);
+    display: block;
+  }
+  .hero-desc {
+    font-size: 1.1rem; line-height: 1.7; color: #444;
+    max-width: 500px; margin-bottom: 2.5rem;
+    opacity: 0; animation: fadeUp 0.7s 0.6s forwards;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.7s 0.8s forwards;
+  }
+  .btn-primary {
+    background: var(--ink); color: white;
+    padding: 0.85rem 2rem; border-radius: 6px;
+    font-size: 0.9rem; font-weight: 600; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary:hover { background: var(--teal-dark); transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent; color: var(--ink);
+    padding: 0.85rem 2rem; border-radius: 6px; border: 1.5px solid var(--border);
+    font-size: 0.9rem; font-weight: 500; text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    letter-spacing: 0.02em;
+  }
+  .btn-secondary:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-1px); }
+
+  .hero-right {
+    position: relative; z-index: 2;
+    display: flex; justify-content: center; align-items: center;
+  }
+  .hero-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    max-width: 380px; width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    opacity: 0; animation: fadeIn 0.8s 1s forwards;
+    position: relative;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute; top: -1px; left: 2rem; right: 2rem; height: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--teal-dark));
+    border-radius: 0 0 4px 4px;
+  }
+  .stat-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; margin-bottom: 1.5rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900; color: var(--teal-dark);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; }
+  .hero-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; margin-bottom: 1rem; font-weight: 700;
+  }
+  .chip-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .chip {
+    background: var(--teal-pale); color: var(--teal-dark);
+    font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.65rem;
+    border-radius: 99px; letter-spacing: 0.03em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.97); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    background: var(--ink); color: white;
+    padding: 1rem 0; overflow: hidden;
+  }
+  .marquee-track {
+    display: flex; gap: 3rem; white-space: nowrap;
+    animation: marquee 25s linear infinite;
+  }
+  .marquee-item {
+    font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; opacity: 0.7;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .marquee-item::after { content: '◆'; font-size: 0.4rem; opacity: 0.5; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── SECTION LAYOUT ── */
+  section { padding: 6rem 3rem; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.14em; color: var(--teal);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900; line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 620px; margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--teal); }
+  .section-intro {
+    font-size: 1.05rem; line-height: 1.75; color: #555;
+    max-width: 560px; margin-bottom: 3.5rem;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: start;
+  }
+  .about-img-block { position: relative; }
+  .about-img-placeholder {
+    width: 100%; aspect-ratio: 3/4;
+    background: linear-gradient(135deg, var(--sand) 0%, var(--teal-pale) 100%);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; color: var(--teal-dark);
+    border: 1px solid var(--border);
+    overflow: hidden; position: relative;
+  }
+  .about-img-placeholder::after {
+    content: 'K';
+    font-family: 'Playfair Display', serif;
+    font-size: 12rem; font-weight: 900;
+    color: rgba(0,180,166,0.1);
+    position: absolute;
+  }
+  .about-badge {
+    position: absolute; bottom: 1.5rem; right: -1.5rem;
+    background: var(--ink); color: white;
+    padding: 1rem 1.25rem; border-radius: 12px;
+    font-size: 0.85rem; font-weight: 600;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    line-height: 1.5;
+  }
+  .about-badge span { display: block; font-size: 1.5rem; font-weight: 900; color: var(--teal); }
+  .about-text p { font-size: 1rem; line-height: 1.8; color: #444; margin-bottom: 1.25rem; }
+  .about-pillars {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-top: 2rem;
+  }
+  .pillar {
+    background: white; border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.25rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .pillar:hover { border-color: var(--teal); transform: translateY(-2px); }
+  .pillar-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .pillar-title { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .pillar-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+  /* ── EXPERIENCE ── */
+  .exp-section { background: var(--ink); color: white; }
+  .exp-section .section-title { color: white; max-width: 100%; }
+  .exp-section .section-label { color: var(--teal); }
+  .exp-section .section-intro { color: rgba(255,255,255,0.65); }
+  .exp-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
+  .exp-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px; padding: 2rem;
+    position: relative; overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .exp-card:hover { border-color: var(--teal); transform: translateY(-3px); }
+  .exp-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--teal), transparent);
+  }
+  .exp-company {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700; color: white;
+    margin-bottom: 0.25rem;
+  }
+  .exp-role { font-size: 0.8rem; color: var(--teal); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.25rem; }
+  .exp-date { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-bottom: 1.25rem; }
+  .exp-highlights { list-style: none; }
+  .exp-highlights li {
+    font-size: 0.88rem; color: rgba(255,255,255,0.7);
+    line-height: 1.6; padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding-left: 1rem; position: relative;
+  }
+  .exp-highlights li::before { content: '→'; position: absolute; left: 0; color: var(--teal); }
+  .exp-highlights li:last-child { border-bottom: none; }
+  .exp-badge {
+    display: inline-flex; background: var(--teal); color: var(--ink);
+    font-size: 0.65rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.2rem 0.5rem; border-radius: 4px;
+    margin-bottom: 0.75rem;
+  }
+
+  /* ── RESULTS / NUMBERS ── */
+  .results-section { background: var(--sand); }
+  .results-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+  .result-card {
+    background: white; border-radius: 14px; padding: 2.5rem 1.5rem;
+    text-align: center; border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .result-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+  .result-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--teal-dark));
+  }
+  .result-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 900; color: var(--teal-dark);
+    line-height: 1; margin-bottom: 0.5rem;
+  }
+  .result-label { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+
+  /* ── SKILLS ── */
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .skill-category { margin-bottom: 2rem; }
+  .skill-category-title {
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1rem;
+  }
+  .skill-bar-wrap { margin-bottom: 0.75rem; }
+  .skill-name { font-size: 0.875rem; font-weight: 500; margin-bottom: 0.3rem; display: flex; justify-content: space-between; }
+  .skill-name span { color: var(--teal-dark); font-weight: 700; }
+  .skill-bar { height: 4px; background: var(--border); border-radius: 99px; overflow: hidden; }
+  .skill-fill {
+    height: 100%; border-radius: 99px;
+    background: linear-gradient(90deg, var(--teal), var(--teal-dark));
+    transform-origin: left;
+    animation: growBar 1.2s ease-out forwards;
+    transform: scaleX(0);
+  }
+  @keyframes growBar { to { transform: scaleX(1); } }
+
+  .tools-section { margin-top: 1rem; }
+  .tools-category { margin-bottom: 1.5rem; }
+  .tools-category-title {
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.75rem;
+  }
+  .tools-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tool-chip {
+    background: white; border: 1px solid var(--border);
+    padding: 0.35rem 0.85rem; border-radius: 8px;
+    font-size: 0.82rem; font-weight: 500; color: var(--ink);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .tool-chip:hover { border-color: var(--teal); color: var(--teal-dark); }
+
+  /* ── SERVICES ── */
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .service-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: 14px; padding: 2.25rem;
+    position: relative; overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: default;
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+    border-color: var(--teal);
+  }
+  .service-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem; font-weight: 900; color: var(--teal-pale);
+    line-height: 1; margin-bottom: 1rem;
+    position: absolute; top: 1.5rem; right: 1.5rem;
+  }
+  .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .service-title {
+    font-size: 1.05rem; font-weight: 700; margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  .service-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── EDUCATION ── */
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .edu-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: 14px; padding: 2rem;
+    display: flex; gap: 1.25rem; align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .edu-card:hover { border-color: var(--teal); }
+  .edu-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: var(--teal-pale); display: flex; align-items: center;
+    justify-content: center; font-size: 1.4rem; flex-shrink: 0;
+  }
+  .edu-degree { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .edu-school { font-size: 0.82rem; color: var(--teal-dark); font-weight: 600; margin-bottom: 0.25rem; }
+  .edu-year { font-size: 0.75rem; color: var(--muted); }
+
+  .cert-list { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 2rem; }
+  .cert-item {
+    background: white; border: 1px solid var(--border);
+    border-radius: 10px; padding: 1rem 1.25rem;
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.875rem; font-weight: 500;
+    transition: border-color 0.2s;
+  }
+  .cert-item:hover { border-color: var(--teal); }
+  .cert-item::before { content: '🏅'; font-size: 1rem; }
+  .cert-year { margin-left: auto; font-size: 0.75rem; color: var(--muted); }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: var(--ink); color: white;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .contact-section::before {
+    content: '';
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(0,180,166,0.1) 0%, transparent 60%);
+    border-radius: 50%;
+  }
+  .contact-section .section-title { color: white; max-width: 100%; text-align: center; }
+  .contact-section .section-label { text-align: center; }
+  .contact-tagline {
+    font-size: 1.1rem; color: rgba(255,255,255,0.6);
+    max-width: 500px; margin: 0 auto 3rem; line-height: 1.7;
+  }
+  .contact-links {
+    display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;
+    position: relative; z-index: 2;
+  }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15);
+    color: white; text-decoration: none;
+    padding: 0.85rem 1.75rem; border-radius: 10px;
+    font-size: 0.9rem; font-weight: 500;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  }
+  .contact-link:hover { background: var(--teal); border-color: var(--teal); transform: translateY(-2px); }
+  .contact-link .icon { font-size: 1.1rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #050505; color: rgba(255,255,255,0.35);
+    text-align: center; padding: 1.5rem;
+    font-size: 0.8rem; letter-spacing: 0.04em;
+  }
+
+  /* ── REVEAL ANIMATIONS ── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 3rem; }
+    .hero-right { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid, .skills-grid, .edu-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .exp-grid, .services-grid { grid-template-columns: 1fr; }
+    .results-grid { grid-template-columns: 1fr 1fr; }
+    .about-badge { right: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Kemi <span>Oyebo</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Available for hire · Based in Switzerland</div>
+    <h1 class="hero-title">
+      Social Media <em>Manager &amp; Community</em> Builder
+    </h1>
+    <p class="hero-desc">
+      I help businesses find their voice online, grow loyal communities, and turn content into measurable revenue — across fintech, SME, and media sectors.
+    </p>
+    <div class="hero-cta">
+      <a href="#experience" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-secondary">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="stat-row">
+        <div class="stat">
+          <div class="stat-num">4+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1K+</div>
+          <div class="stat-label">SEO Articles</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">200%</div>
+          <div class="stat-label">Follower Growth</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">20K+</div>
+          <div class="stat-label">Email Audience</div>
+        </div>
+      </div>
+      <div class="hero-card-title">Core Expertise</div>
+      <div class="chip-list">
+        <span class="chip">Social Media</span>
+        <span class="chip">Community Building</span>
+        <span class="chip">SEO Writing</span>
+        <span class="chip">Email Marketing</span>
+        <span class="chip">Short-Form Video</span>
+        <span class="chip">Influencer Marketing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Social Media Strategy</span>
+    <span class="marquee-item">Community Building</span>
+    <span class="marquee-item">SEO Copywriting</span>
+    <span class="marquee-item">Email Marketing</span>
+    <span class="marquee-item">Influencer Marketing</span>
+    <span class="marquee-item">Content Marketing</span>
+    <span class="marquee-item">Brand Storytelling</span>
+    <span class="marquee-item">Audience Growth</span>
+    <span class="marquee-item">Campaign Analytics</span>
+    <span class="marquee-item">Lead Nurturing</span>
+    <span class="marquee-item">Social Media Strategy</span>
+    <span class="marquee-item">Community Building</span>
+    <span class="marquee-item">SEO Copywriting</span>
+    <span class="marquee-item">Email Marketing</span>
+    <span class="marquee-item">Influencer Marketing</span>
+    <span class="marquee-item">Content Marketing</span>
+    <span class="marquee-item">Brand Storytelling</span>
+    <span class="marquee-item">Audience Growth</span>
+    <span class="marquee-item">Campaign Analytics</span>
+    <span class="marquee-item">Lead Nurturing</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <div class="section-label">About Me</div>
+    <h2 class="section-title">Results-obsessed. <em>Community-led.</em></h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-img-block reveal">
+      <div class="about-img-placeholder">Kemi Oyebo</div>
+      <div class="about-badge">
+        <span>YC W'22</span>
+        Lenco Alumni
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <p>I'm Oluwakemi Oyebo — a Social Media Manager and Community Builder with 4+ years of verifiable impact across fintech, SME, and media sectors.</p>
+      <p>Most recently, I spent nearly 3 years at <strong>Lenco (YC W'22)</strong>, a fast-growing African fintech, where I built their content marketing engine from the ground up — 1,000+ SEO articles, a 20,000-strong email audience, a Facebook community that went from zero to 1,000+ active members in 9 months, and a 200% growth in combined social following.</p>
+      <p>I'm now based in <strong>Switzerland</strong>, completing my MSc in Corporate Communication at USI, and ready to bring that same strategic energy to new markets.</p>
+      <div class="about-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">📊</div>
+          <div class="pillar-title">Data-Driven</div>
+          <div class="pillar-desc">Every campaign tracked, measured, and optimised for real outcomes.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🌍</div>
+          <div class="pillar-title">Multi-Market</div>
+          <div class="pillar-desc">Built communities across Nigeria, Zambia, and beyond.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">✍️</div>
+          <div class="pillar-title">Content-First</div>
+          <div class="pillar-desc">SEO-led, story-driven content that builds trust and converts.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🤝</div>
+          <div class="pillar-title">Community Builder</div>
+          <div class="pillar-desc">Turning audiences into loyal brand advocates, not just followers.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS STRIP -->
+<section class="results-section">
+  <div class="reveal" style="text-align:center; margin-bottom: 3rem;">
+    <div class="section-label" style="justify-content:center; display:flex;">Impact By Numbers</div>
+    <h2 class="section-title" style="max-width:100%; text-align:center;">The numbers <em>speak.</em></h2>
+  </div>
+  <div class="results-grid reveal">
+    <div class="result-card">
+      <div class="result-num">1,000+</div>
+      <div class="result-label">SEO-optimised articles published at Lenco</div>
+    </div>
+    <div class="result-card">
+      <div class="result-num">200%</div>
+      <div class="result-label">Combined social follower growth across platforms</div>
+    </div>
+    <div class="result-card">
+      <div class="result-num">25%</div>
+      <div class="result-label">Increase in user engagement via email campaigns</div>
+    </div>
+    <div class="result-card">
+      <div class="result-num">20%</div>
+      <div class="result-label">Lift in new account sign-ups from event campaigns</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="exp-section">
+  <div class="reveal">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title" style="color:white;">Where I've <em>built things.</em></h2>
+    <p class="section-intro">A track record of growing audiences, building communities, and driving real business outcomes across industries and geographies.</p>
+  </div>
+  <div class="exp-grid reveal">
+    <div class="exp-card">
+      <span class="exp-badge">YC W'22</span>
+      <div class="exp-company">Lenco</div>
+      <div class="exp-role">Content Marketer & Social Media Manager</div>
+      <div class="exp-date">Oct 2022 – Aug 2025 · Nigeria & Zambia · Remote</div>
+      <ul class="exp-highlights">
+        <li>Architected a content engine delivering 1,000+ SEO-optimised articles — cementing Lenco as a thought leader in African fintech</li>
+        <li>Engineered email campaigns to 20,000+ SMEs, driving 25% surge in user engagement and 10% reduction in churn</li>
+        <li>Scaled a Facebook community for Zambian SMEs from zero to 1,000+ active members in just 9 months</li>
+        <li>Grew combined social following by 200% across Instagram, LinkedIn, TikTok, and Facebook</li>
+        <li>Influencer campaigns and events generated a 20% lift in new account sign-ups</li>
+      </ul>
+    </div>
+    <div class="exp-card">
+      <span class="exp-badge">EdTech / NGO</span>
+      <div class="exp-company">Sheevolution Africa</div>
+      <div class="exp-role">Communications Specialist</div>
+      <div class="exp-date">Aug 2023 – Aug 2025 · Nigeria · Remote</div>
+      <ul class="exp-highlights">
+        <li>Led full content strategy across all social channels, driving consistent audience growth and program enrollment</li>
+        <li>Formulated multi-channel communications strategies attracting diverse participants and stakeholders</li>
+        <li>Mentored participants for investor pitching events — several students secured actual seed funding</li>
+      </ul>
+    </div>
+    <div class="exp-card">
+      <span class="exp-badge">Media</span>
+      <div class="exp-company">The People's Choice</div>
+      <div class="exp-role">Content Writer (Intern)</div>
+      <div class="exp-date">Aug – Nov 2019 · Nigeria · On-site</div>
+      <ul class="exp-highlights">
+        <li>Monitored audience engagement metrics and social conversations to sharpen editorial strategy</li>
+        <li>Researched and published 50+ breaking news stories for EarthNews.ng, contributing to sustained traffic growth</li>
+        <li>Produced premium branded content that elevated client media reputations measurably</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="reveal">
+    <div class="section-label">What I Do</div>
+    <h2 class="section-title">How I can <em>help you</em> grow.</h2>
+    <p class="section-intro">Whether you need a content engine, a community strategy, or a full social media overhaul — I bring a proven playbook and the execution to match.</p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-icon">📱</div>
+      <div class="service-title">Social Media Strategy & Management</div>
+      <div class="service-desc">Platform-native content calendars, consistent brand voice, and a growth-first approach across LinkedIn, Instagram, TikTok, and Facebook.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon">✍️</div>
+      <div class="service-title">SEO Blog & Content Marketing</div>
+      <div class="service-desc">Long-form, keyword-rich content that ranks, educates, and converts — I've published 1,000+ articles that built category authority for Lenco.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon">🎬</div>
+      <div class="service-title">Short-Form Video & Reels</div>
+      <div class="service-desc">Engaging, scroll-stopping video content that explains your product and humanises your brand — built for TikTok, Reels, and LinkedIn.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-icon">📧</div>
+      <div class="service-title">Email Marketing & Newsletters</div>
+      <div class="service-desc">Nurture sequences, product updates, and newsletters using Mailchimp, HubSpot, and Intercom. I managed a 20,000+ subscriber list at Lenco.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <div class="service-icon">🌐</div>
+      <div class="service-title">Community Building</div>
+      <div class="service-desc">Designing and growing engaged communities around your brand — turning cold audiences into advocates who sell for you.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <div class="service-icon">🤝</div>
+      <div class="service-title">Influencer & Event Marketing</div>
+      <div class="service-desc">Identifying the right voices, structuring partnerships, and running events that generate real sign-ups and measurable brand lift.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background: var(--sand);">
+  <div class="reveal">
+    <div class="section-label">Skills & Tools</div>
+    <h2 class="section-title">The craft <em>behind</em> the strategy.</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="reveal">
+      <div class="skill-category">
+        <div class="skill-category-title">Core Skills</div>
+        <div class="skill-bar-wrap">
+          <div class="skill-name">Social Media Strategy <span>Expert</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:95%; animation-delay:0.1s"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-name">SEO Content & Copywriting <span>Expert</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:93%; animation-delay:0.2s"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-name">Community Building <span>Expert</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:92%; animation-delay:0.3s"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-name">Email Marketing <span>Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:90%; animation-delay:0.4s"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-name">Campaign Analytics <span>Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:85%; animation-delay:0.5s"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-name">Influencer Marketing <span>Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:85%; animation-delay:0.6s"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-name">Short-Form Video <span>Proficient</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:80%; animation-delay:0.7s"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="tools-section">
+        <div class="tools-category">
+          <div class="tools-category-title">Social Platforms</div>
+          <div class="tools-chips">
+            <span class="tool-chip">LinkedIn</span>
+            <span class="tool-chip">Instagram</span>
+            <span class="tool-chip">TikTok</span>
+            <span class="tool-chip">Facebook</span>
+            <span class="tool-chip">X (Twitter)</span>
+            <span class="tool-chip">Meta Business Suite</span>
+            <span class="tool-chip">Snapchat</span>
+          </div>
+        </div>
+        <div class="tools-category">
+          <div class="tools-category-title">Email & CRM</div>
+          <div class="tools-chips">
+            <span class="tool-chip">Mailchimp</span>
+            <span class="tool-chip">HubSpot</span>
+            <span class="tool-chip">Intercom</span>
+            <span class="tool-chip">OneSignal</span>
+            <span class="tool-chip">Clay</span>
+          </div>
+        </div>
+        <div class="tools-category">
+          <div class="tools-category-title">Content & SEO</div>
+          <div class="tools-chips">
+            <span class="tool-chip">WordPress</span>
+            <span class="tool-chip">SEMrush</span>
+            <span class="tool-chip">Google Analytics</span>
+            <span class="tool-chip">Canva</span>
+            <span class="tool-chip">CapCut</span>
+          </div>
+        </div>
+        <div class="tools-category">
+          <div class="tools-category-title">Project Management</div>
+          <div class="tools-chips">
+            <span class="tool-chip">Notion</span>
+            <span class="tool-chip">Google Workspace</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="reveal">
+    <div class="section-label">Education & Certifications</div>
+    <h2 class="section-title">Credentials that <em>back the craft.</em></h2>
+  </div>
+  <div class="edu-grid reveal" style="margin-bottom: 2.5rem;">
+    <div class="edu-card">
+      <div class="edu-icon">🎓</div>
+      <div>
+        <div class="edu-degree">M.Sc. Corporate Communication</div>
+        <div class="edu-school">Università della Svizzera Italiana (USI)</div>
+        <div class="edu-year">September 2025 (In view)</div>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon">🏛️</div>
+      <div>
+        <div class="edu-degree">B.Sc. Mass Communication (PR & Advertising)</div>
+        <div class="edu-school">Covenant University</div>
+        <div class="edu-year">August 2018 – August 2022</div>
+      </div>
+    </div>
+  </div>
+  <div class="cert-list reveal">
+    <div class="cert-item">HubSpot Content Marketing Certification — HubSpot Academy <span class="cert-year">2023</span></div>
+    <div class="cert-item">HubSpot Email Marketing Certification — HubSpot Academy <span class="cert-year">2023</span></div>
+    <div class="cert-item">Content Marketing Certificate — Treford <span class="cert-year">2025</span></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div style="position:relative; z-index:2;">
+    <div class="section-label" style="justify-content:center; display:flex; color:var(--teal);">Let's Connect</div>
+    <h2 class="section-title reveal" style="color:white; text-align:center; max-width:100%;">
+      Ready to grow <em>your brand?</em>
+    </h2>
+    <p class="contact-tagline reveal">
+      I'm currently based in Switzerland and open to new opportunities. Whether it's full-time, part-time, or a project — let's talk.
+    </p>
+    <div class="contact-links reveal">
+      <a href="mailto:oluwakedeola@gmail.com" class="contact-link">
+        <span class="icon">✉️</span> oluwakedeola@gmail.com
+      </a>
+      <a href="tel:+41766696044" class="contact-link">
+        <span class="icon">📞</span> +41 76 669 60 44
+      </a>
+      <a href="https://kemi.site" target="_blank" class="contact-link">
+        <span class="icon">🌐</span> kemi.site
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 Oluwakemi Oyebo · Social Media Manager & Community Builder · Switzerland
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      // Trigger skill bars inside
+      e.target.querySelectorAll('.skill-fill').forEach(bar => {
+        bar.style.transform = 'scaleX(1)';
+      });
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Smooth active nav on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--teal)' : '';
+  });
+});
+</script>
+</body>
+</html>
